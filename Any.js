@@ -1,23 +1,17 @@
-var numRescueBoats = function (people, limit) {
-  let left = 0;
-  let right = people.length - 1;
-  let cnt = 0;
+// 동전 greedy
+const test = (n, coins) => {
+  let sum = 0;
+  let shared = 0;
 
-  people.sort((a, b) => a - b);
-  console.log('people: ', people);
-
-  while (left <= right) {
-    const sum = people[left] + people[right];
-
-    if (sum <= limit) left++;
-    right--;
-
-    cnt++;
+  for (const coin of coins) {
+    shared = Math.floor(n / coin);
+    n %= coin;
+    sum += shared;
   }
-  return cnt;
+
+  return sum;
 };
 
-const people = [3, 2, 2, 1];
-const limit = 3;
-
-numRescueBoats(people, limit);
+n = 1260;
+coins = [500, 100, 50, 10];
+test(n, coins);
